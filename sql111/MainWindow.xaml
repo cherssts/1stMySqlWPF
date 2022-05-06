@@ -1,0 +1,62 @@
+﻿<Window x:Name="_mainWin"  x:Class="sql111.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:sql111"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="500
+        " Width="835" Closed="_mainWin_Closed">
+    <Window.Resources>
+        <ControlTemplate x:Key="DataGridTemplate1" TargetType="{x:Type DataGrid}">
+            <Grid Background="White"/>
+        </ControlTemplate>
+    </Window.Resources>
+    <Grid>
+        
+        <Canvas HorizontalAlignment="Center" Height="134" Margin="0,-1,0,0" VerticalAlignment="Top" Width="836" Background="#FFFFB488" Grid.ColumnSpan="2">
+            <Label Content="MySql Test" Height="58" Canvas.Left="42" Canvas.Top="32" Width="161" FontSize="30" FontWeight="Bold" FontFamily="Calibri" FontStyle="Normal"/>
+        </Canvas>
+        <Button x:Name="_newButton" Content="New Profile" HorizontalAlignment="Left" Height="40" Margin="10,138,0,0" VerticalAlignment="Top" Width="90" Background="#FFFFB488" BorderBrush="#FFA27357" Foreground="Black" Click="_newButton_Click"/>
+        <Rectangle Margin="10,183,17,0" Stroke="DimGray" Fill="DimGray" Grid.ColumnSpan="2" RenderTransformOrigin="0.5,0.5" Height="271" VerticalAlignment="Top"/>
+
+        <DataGrid x:Name="_dataDisplay" Margin="22,196,29,0" CanUserResizeColumns="False" CanUserResizeRows="False"  Height="243" VerticalAlignment="Top" Foreground="Black" Background="White" AutoGenerateColumns="False" ItemsSource="{Binding Path=LoadDataBinding}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="False">
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="#FFFF9427"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="BorderThickness" Value="1,0,2,1"/>
+                    <Setter Property="BorderBrush" Value="Black"/>
+                </Style>
+            </DataGrid.Resources>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path= emp_id}" Header="ID" Width="50" CanUserResize="False"/>
+                <DataGridTextColumn Binding="{Binding Path= name}" Header="Name" Width="*" CanUserResize="False"/>
+                <DataGridTextColumn Binding="{Binding Path= birth_date, StringFormat={}\{0:dd/MM/yyyy\}}" Header="Birthdate" Width="*" CanUserResize="False"/>
+                <DataGridTextColumn Binding="{Binding Path= sex}" Header="Sex" Width="*" CanUserResize="False"/>
+                <DataGridTextColumn Binding="{Binding Path= salary}" Header="Salary" Width="*" CanUserResize="False"/>
+                <DataGridTextColumn Binding="{Binding Path= branch_id}" Header="Branch ID" Width="*" CanUserResize="False"/>
+                <DataGridTextColumn Binding="{Binding Path= sup_id}" Header="Sup ID" Width="*" CanUserResize="False"/>
+                <DataGridTemplateColumn Header="" Width="60" CanUserResize="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="_updatebtn" Content="Update" Click="_updatebtn_Click" Background="#b3ff87" Foreground="Black" FontWeight="SemiBold" BorderBrush="#68944e"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="" Width="60" CanUserResize="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="_deletebtn" Content="Delete"  Background="#ff6363" Foreground="Black" BorderBrush="#b04343" FontWeight="SemiBold" Click="_deletebtn_Click1" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBox x:Name="_searchBox" Height="32" Margin="508,146,17,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" TextChanged="_Search" Grid.ColumnSpan="2" FontSize="20"/>
+
+    </Grid>
+</Window>
